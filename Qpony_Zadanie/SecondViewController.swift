@@ -25,9 +25,12 @@ class SecondViewController: UIViewController,ButtonWithStateDelegate {
     super.didReceiveMemoryWarning()
   }
 
-  func buttonStateChanged() {
-    print("state changed")
+  func buttonStateWillChange(button:String) {
+    print("State in button \(button) is about to change")
   }
 
+  func buttonStateChangedToState(state:String, ofButton button:String) {
+  print("State in button \(button) changed to \(state)")
+  }
 }
 

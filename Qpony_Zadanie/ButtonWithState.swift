@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 protocol ButtonWithStateDelegate:class {
-  func buttonStateChanged()
+  func buttonStateWillChange(button:String)
+  func buttonStateChangedToState(state:String, ofButton button:String)
 }
 
 class ButtonWithState: UIButton {
@@ -18,20 +19,20 @@ class ButtonWithState: UIButton {
   
   weak var delegate:ButtonWithStateDelegate?
   var stateListOfEnums:Array<buttonStatesEnum>!
-  var buttonState:ButtonStateProtocol?
   var currentStateIndex = 0
+  var buttonDescription:String?
+  var buttonState: ButtonStateProtocol!
   
   var color:UIColor {
     get{
-      return butonState.returnColor()
+      return buttonState.returnColor()
     }
   }
   var text:String {
     get {
-      return butonState.returnText()
+      return buttonState.returnText()
     }
   }
-  var butonState: ButtonStateProtocol!
   //MARK: methods
   
   override init(frame:CGRect){ // allows to create button programmatically
@@ -47,7 +48,7 @@ class ButtonWithState: UIButton {
   func initRoutine(){
     self.stateListOfEnums = Array()
     self.initialStates()
-    self.changeStateEnum(toState: stateListOfEnums[0])
+    self.changeState(toState: stateListOfEnums[0])
   }
   
   func initialStates() { // Override this func in subclass to add default states at button init
@@ -60,13 +61,14 @@ class ButtonWithState: UIButton {
     self.traverseState()
   }
   
-  func changeStateEnum(toState newState:buttonStatesEnum) {
+  func changeState(toState newState:buttonStatesEnum) {
     
-    self.delegate?.buttonStateChanged()
-    self.butonState = buttonStatesEnum.getState(newState)
-    self.layer.backgroundColor = self.butonState.returnColor().CGColor
-    self.layer.borderColor = self.butonState.returnColor().CGColor
-    self.setTitle(self.butonState.returnText(), forState: UIControlState.Normal)
+    self.delegate?.buttonStateWillChange(self.buttonDescription!)
+    self.buttonState = buttonStatesEnum.getState(newState)
+    self.layer.backgroundColor = self.buttonState.returnColor().CGColor
+    self.layer.borderColor = self.buttonState.returnColor().CGColor
+    self.setTitle(self.buttonState.returnText(), forState: UIControlState.Normal)
+    self.delegate?.buttonStateChangedToState(self.buttonState.returnText(), ofButton: self.buttonDescription!)
   }
   
   func traverseState(){
@@ -75,14 +77,17 @@ class ButtonWithState: UIButton {
       currentStateIndex = 0
     }
     
-    self.changeStateEnum(toState: stateListOfEnums[currentStateIndex])
+    self.changeState(toState: stateListOfEnums[currentStateIndex])
   }
   
 }
 
+
+//MARK:examle buttons with example states
 class ButtonWithStateOne: ButtonWithState {
   
   override func initialStates(){
+    self.buttonDescription = "Button One"
     stateListOfEnums.append(buttonStatesEnum.StateOne)
     stateListOfEnums.append(buttonStatesEnum.StateTwo)
     stateListOfEnums.append(buttonStatesEnum.StateThree)
@@ -92,6 +97,8 @@ class ButtonWithStateOne: ButtonWithState {
 class ButtonWithStateTwo: ButtonWithState {
   
   override func initialStates(){
+    
+    self.buttonDescription = "Button Two"
     stateListOfEnums.append(buttonStatesEnum.StateFive)
     stateListOfEnums.append(buttonStatesEnum.StateOne)
     stateListOfEnums.append(buttonStatesEnum.StateFour)

@@ -63,7 +63,7 @@ class ButtonWithState: UIButton {
   func changeStateEnum(toState newState:buttonStatesEnum) {
     
     self.delegate?.buttonStateChanged()
-    self.butonState = ButtonStateDefault.getState(newState)
+    self.butonState = buttonStatesEnum.getState(newState)
     self.layer.backgroundColor = self.butonState.returnColor().CGColor
     self.layer.borderColor = self.butonState.returnColor().CGColor
     self.setTitle(self.butonState.returnText(), forState: UIControlState.Normal)

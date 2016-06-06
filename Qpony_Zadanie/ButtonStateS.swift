@@ -26,6 +26,14 @@ class ButtonStateDefault: ButtonStateProtocol {
   func returnText() -> String {
     return self.text
   }
+  
+}
+
+//MARK: Button states
+
+enum buttonStatesEnum {
+  case StateOne, StateTwo, StateThree, StateFour, StateFive, StateDefault
+  
   static func getState(state:buttonStatesEnum) -> ButtonStateDefault {
     switch state {
     case .StateOne:
@@ -42,12 +50,6 @@ class ButtonStateDefault: ButtonStateProtocol {
       return ButtonStateDefault()
     }
   }
-}
-
-//MARK: Button states
-
-enum buttonStatesEnum{
-  case StateOne, StateTwo, StateThree, StateFour, StateFive, StateDefault
 }
 
 class ButtonStateFirst: ButtonStateDefault {

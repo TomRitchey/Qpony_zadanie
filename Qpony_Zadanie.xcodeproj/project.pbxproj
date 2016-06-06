@@ -13,6 +13,8 @@
 		A7A45E291D040D160045C2EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A45E271D040D160045C2EC /* Main.storyboard */; };
 		A7A45E2B1D040D160045C2EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7A45E2A1D040D160045C2EC /* Assets.xcassets */; };
 		A7A45E2E1D040D160045C2EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A45E2C1D040D160045C2EC /* LaunchScreen.storyboard */; };
+		A7A45E361D0412360045C2EC /* ButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A45E351D0412360045C2EC /* ButtonWithState.swift */; };
+		A7A45E381D0496230045C2EC /* ButtonStateS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A45E371D0496230045C2EC /* ButtonStateS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		A7A45E2A1D040D160045C2EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7A45E2D1D040D160045C2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7A45E2F1D040D160045C2EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7A45E351D0412360045C2EC /* ButtonWithState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonWithState.swift; sourceTree = "<group>"; };
+		A7A45E371D0496230045C2EC /* ButtonStateS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStateS.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +62,23 @@
 			children = (
 				A7A45E211D040D160045C2EC /* AppDelegate.swift */,
 				A7A45E231D040D160045C2EC /* FirstViewController.swift */,
-				A7A45E251D040D160045C2EC /* SecondViewController.swift */,
+				A7A45E391D05447B0045C2EC /* Zadanie 2 */,
 				A7A45E271D040D160045C2EC /* Main.storyboard */,
 				A7A45E2A1D040D160045C2EC /* Assets.xcassets */,
 				A7A45E2C1D040D160045C2EC /* LaunchScreen.storyboard */,
 				A7A45E2F1D040D160045C2EC /* Info.plist */,
 			);
 			path = Qpony_Zadanie;
+			sourceTree = "<group>";
+		};
+		A7A45E391D05447B0045C2EC /* Zadanie 2 */ = {
+			isa = PBXGroup;
+			children = (
+				A7A45E251D040D160045C2EC /* SecondViewController.swift */,
+				A7A45E351D0412360045C2EC /* ButtonWithState.swift */,
+				A7A45E371D0496230045C2EC /* ButtonStateS.swift */,
+			);
+			name = "Zadanie 2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +154,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7A45E261D040D160045C2EC /* SecondViewController.swift in Sources */,
+				A7A45E381D0496230045C2EC /* ButtonStateS.swift in Sources */,
+				A7A45E361D0412360045C2EC /* ButtonWithState.swift in Sources */,
 				A7A45E221D040D160045C2EC /* AppDelegate.swift in Sources */,
 				A7A45E241D040D160045C2EC /* FirstViewController.swift in Sources */,
 			);

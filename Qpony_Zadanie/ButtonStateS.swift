@@ -26,14 +26,34 @@ class ButtonStateDefault: ButtonStateProtocol {
   func returnText() -> String {
     return self.text
   }
+  static func getState(state:buttonStatesEnum) -> ButtonStateDefault {
+    switch state {
+    case .StateOne:
+      return ButtonStateFirst()
+    case .StateTwo:
+      return ButtonStateSecond()
+    case .StateThree:
+      return ButtonStateThird()
+    case .StateFour:
+      return ButtonStateFourth()
+    case .StateFive:
+      return ButtonStateFifth()
+    default:
+      return ButtonStateDefault()
+    }
+  }
 }
 
 //MARK: Button states
 
+enum buttonStatesEnum{
+  case StateOne, StateTwo, StateThree, StateFour, StateFive, StateDefault
+}
+
 class ButtonStateFirst: ButtonStateDefault {
   override init() {
     super.init()
-    self.color = UIColor.purpleColor()
+    self.color = UIColor.greenColor()
     self.text = "First State"
   }
 }
@@ -41,7 +61,7 @@ class ButtonStateFirst: ButtonStateDefault {
 class ButtonStateSecond: ButtonStateDefault {
   override init() {
     super.init()
-    self.color = UIColor.blueColor()
+    self.color = UIColor.yellowColor()
     self.text = "Second State"
   }
 }

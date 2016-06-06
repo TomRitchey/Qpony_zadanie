@@ -17,7 +17,8 @@ class ButtonWithState: UIButton {
   //MARK: properties
   
   weak var delegate:ButtonWithStateDelegate?
-  var stateList:Array<ButtonStateProtocol>!
+  var stateListOfEnums:Array<buttonStatesEnum>!
+  var buttonState:ButtonStateProtocol?
   var currentStateIndex = 0
   
   var color:UIColor {
@@ -33,7 +34,7 @@ class ButtonWithState: UIButton {
   var butonState: ButtonStateProtocol!
   //MARK: methods
   
-  override init(frame:CGRect){ //
+  override init(frame:CGRect){ // allows to create button programmatically
     super.init(frame: frame)
     self.initRoutine()
   }
@@ -44,13 +45,14 @@ class ButtonWithState: UIButton {
   }
   
   func initRoutine(){
-    self.stateList = Array()
+    self.stateListOfEnums = Array()
     self.initialStates()
-    self.changeState(toState: stateList[0])
+    self.changeStateEnum(toState: stateListOfEnums[0])
   }
   
-  func initialStates() { // Override this func do add default states at button init
-    stateList.append(ButtonStateDefault())
+  func initialStates() { // Override this func in subclass to add default states at button init
+    
+    stateListOfEnums.append(buttonStatesEnum.StateDefault)
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -58,22 +60,22 @@ class ButtonWithState: UIButton {
     self.traverseState()
   }
   
-  func changeState(toState newState:ButtonStateProtocol) {
+  func changeStateEnum(toState newState:buttonStatesEnum) {
     
     self.delegate?.buttonStateChanged()
-    self.butonState = newState
-    self.layer.backgroundColor = newState.returnColor().CGColor
-    self.layer.borderColor = newState.returnColor().CGColor
-    self.setTitle(newState.returnText(), forState: UIControlState.Normal)
+    self.butonState = ButtonStateDefault.getState(newState)
+    self.layer.backgroundColor = self.butonState.returnColor().CGColor
+    self.layer.borderColor = self.butonState.returnColor().CGColor
+    self.setTitle(self.butonState.returnText(), forState: UIControlState.Normal)
   }
   
   func traverseState(){
     currentStateIndex += 1
-    if currentStateIndex >= stateList?.count {
+    if currentStateIndex >= stateListOfEnums.count {
       currentStateIndex = 0
     }
     
-    self.changeState(toState: stateList![currentStateIndex])
+    self.changeStateEnum(toState: stateListOfEnums[currentStateIndex])
   }
   
 }
@@ -81,18 +83,18 @@ class ButtonWithState: UIButton {
 class ButtonWithStateOne: ButtonWithState {
   
   override func initialStates(){
-    stateList.append(ButtonStateFirst())
-    stateList.append(ButtonStateSecond())
-    stateList.append(ButtonStateThird())
+    stateListOfEnums.append(buttonStatesEnum.StateOne)
+    stateListOfEnums.append(buttonStatesEnum.StateTwo)
+    stateListOfEnums.append(buttonStatesEnum.StateThree)
   }
 }
 
 class ButtonWithStateTwo: ButtonWithState {
   
   override func initialStates(){
-    stateList.append(ButtonStateSecond())
-    stateList.append(ButtonStateFourth())
-    stateList.append(ButtonStateFirst())
-    stateList.append(ButtonStateFifth())
+    stateListOfEnums.append(buttonStatesEnum.StateFive)
+    stateListOfEnums.append(buttonStatesEnum.StateOne)
+    stateListOfEnums.append(buttonStatesEnum.StateFour)
+    stateListOfEnums.append(buttonStatesEnum.StateTwo)
   }
 }

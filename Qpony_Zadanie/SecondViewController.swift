@@ -19,6 +19,10 @@ class SecondViewController: UIViewController,ButtonWithStateDelegate {
     
     buttonWithStateOutlet.delegate = self
     buttonWithStateOutlet2.delegate = self
+    
+//    buttonWithStateOutlet2.stateListOfEnums.removeAll()
+//    buttonWithStateOutlet2.stateListOfEnums.append(buttonStatesEnum.StateThree)
+//    buttonWithStateOutlet2.stateListOfEnums.append(buttonStatesEnum.StateFour)
   }
   
   override func didReceiveMemoryWarning() {

@@ -31,10 +31,10 @@ class ButtonStateDefault: ButtonStateProtocol {
 
 //MARK: Button states
 
-enum buttonStatesEnum {
+enum ButtonStatesEnum {
   case StateOne, StateTwo, StateThree, StateFour, StateFive, StateDefault
   
-  static func getState(state:buttonStatesEnum) -> ButtonStateDefault {
+  static func getState(state:ButtonStatesEnum) -> ButtonStateDefault {
     switch state {
     case .StateOne:
       return ButtonStateFirst()

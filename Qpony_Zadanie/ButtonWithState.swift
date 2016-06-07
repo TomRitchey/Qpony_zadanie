@@ -18,7 +18,7 @@ class ButtonWithState: UIButton {
   //MARK: properties
   
   weak var delegate:ButtonWithStateDelegate?
-  var stateListOfEnums:Array<buttonStatesEnum>!
+  var stateListOfEnums:Array<ButtonStatesEnum>!
   var currentStateIndex = 0
   var buttonDescription:String?
   var buttonState: ButtonStateProtocol!
@@ -53,18 +53,13 @@ class ButtonWithState: UIButton {
   
   func initialStates() { // Override this func in subclass to add default states at button init
     
-    stateListOfEnums.append(buttonStatesEnum.StateDefault)
+    stateListOfEnums.append(ButtonStatesEnum.StateDefault)
   }
   
-  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-
-    self.traverseState()
-  }
-  
-  func changeState(toState newState:buttonStatesEnum) {
+  func changeState(toState newState:ButtonStatesEnum) {
     
     self.delegate?.buttonStateWillChange(self.buttonDescription!)
-    self.buttonState = buttonStatesEnum.getState(newState)
+    self.buttonState = ButtonStatesEnum.getState(newState)
     self.layer.backgroundColor = self.buttonState.returnColor().CGColor
     self.layer.borderColor = self.buttonState.returnColor().CGColor
     self.setTitle(self.buttonState.returnText(), forState: UIControlState.Normal)
@@ -76,8 +71,12 @@ class ButtonWithState: UIButton {
     if currentStateIndex >= stateListOfEnums.count {
       currentStateIndex = 0
     }
-    
     self.changeState(toState: stateListOfEnums[currentStateIndex])
+  }
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    
+    self.traverseState()
   }
   
 }
@@ -88,20 +87,19 @@ class ButtonWithStateOne: ButtonWithState {
   
   override func initialStates(){
     self.buttonDescription = "Button One"
-    stateListOfEnums.append(buttonStatesEnum.StateOne)
-    stateListOfEnums.append(buttonStatesEnum.StateTwo)
-    stateListOfEnums.append(buttonStatesEnum.StateThree)
+    stateListOfEnums.append(ButtonStatesEnum.StateOne)
+    stateListOfEnums.append(ButtonStatesEnum.StateTwo)
+    stateListOfEnums.append(ButtonStatesEnum.StateThree)
   }
 }
 
 class ButtonWithStateTwo: ButtonWithState {
   
   override func initialStates(){
-    
     self.buttonDescription = "Button Two"
-    stateListOfEnums.append(buttonStatesEnum.StateFive)
-    stateListOfEnums.append(buttonStatesEnum.StateOne)
-    stateListOfEnums.append(buttonStatesEnum.StateFour)
-    stateListOfEnums.append(buttonStatesEnum.StateTwo)
+    stateListOfEnums.append(ButtonStatesEnum.StateFive)
+    stateListOfEnums.append(ButtonStatesEnum.StateOne)
+    stateListOfEnums.append(ButtonStatesEnum.StateFour)
+    stateListOfEnums.append(ButtonStatesEnum.StateTwo)
   }
 }

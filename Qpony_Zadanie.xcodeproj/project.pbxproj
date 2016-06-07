@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A76CC6661D05A3C5002719E4 /* JSONgetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76CC6651D05A3C5002719E4 /* JSONgetter.swift */; };
+		A76CC6681D072BC2002719E4 /* JSONDataExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76CC6671D072BC2002719E4 /* JSONDataExtractor.swift */; };
 		A7A45E221D040D160045C2EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A45E211D040D160045C2EC /* AppDelegate.swift */; };
 		A7A45E241D040D160045C2EC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A45E231D040D160045C2EC /* FirstViewController.swift */; };
 		A7A45E261D040D160045C2EC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A45E251D040D160045C2EC /* SecondViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A76CC6651D05A3C5002719E4 /* JSONgetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONgetter.swift; sourceTree = "<group>"; };
+		A76CC6671D072BC2002719E4 /* JSONDataExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDataExtractor.swift; sourceTree = "<group>"; };
 		A7A45E1E1D040D160045C2EC /* Qpony_Zadanie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qpony_Zadanie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7A45E211D040D160045C2EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7A45E231D040D160045C2EC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +45,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A76CC6621D058E1A002719E4 /* Zadanie 1 */ = {
+			isa = PBXGroup;
+			children = (
+				A7A45E231D040D160045C2EC /* FirstViewController.swift */,
+				A76CC6671D072BC2002719E4 /* JSONDataExtractor.swift */,
+				A76CC6651D05A3C5002719E4 /* JSONgetter.swift */,
+			);
+			name = "Zadanie 1";
+			sourceTree = "<group>";
+		};
 		A7A45E151D040D160045C2EC = {
 			isa = PBXGroup;
 			children = (
@@ -61,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				A7A45E211D040D160045C2EC /* AppDelegate.swift */,
-				A7A45E231D040D160045C2EC /* FirstViewController.swift */,
+				A76CC6621D058E1A002719E4 /* Zadanie 1 */,
 				A7A45E391D05447B0045C2EC /* Zadanie 2 */,
 				A7A45E271D040D160045C2EC /* Main.storyboard */,
 				A7A45E2A1D040D160045C2EC /* Assets.xcassets */,
@@ -155,6 +169,8 @@
 			files = (
 				A7A45E261D040D160045C2EC /* SecondViewController.swift in Sources */,
 				A7A45E381D0496230045C2EC /* ButtonStateS.swift in Sources */,
+				A76CC6681D072BC2002719E4 /* JSONDataExtractor.swift in Sources */,
+				A76CC6661D05A3C5002719E4 /* JSONgetter.swift in Sources */,
 				A7A45E361D0412360045C2EC /* ButtonWithState.swift in Sources */,
 				A7A45E221D040D160045C2EC /* AppDelegate.swift in Sources */,
 				A7A45E241D040D160045C2EC /* FirstViewController.swift in Sources */,
@@ -309,6 +325,7 @@
 				A7A45E341D040D160045C2EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

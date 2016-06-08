@@ -29,12 +29,18 @@ struct Temperatures {
   }
 }
 
+protocol JsonParserDelegate:class {
+  func dataDidParse(weatherData:Array<ForecastDetails>)
+}
+
 class JsonParser:NSObject, JsonDownloaderDelegate {
   //miasto,temperatura,ciśnienie oraz ikona symbolizująca daną prognozę
   var city:String?
   var weatherData:Array<ForecastDetails>?
   var url:String!
   var jsonDwnld:JsonDownloader!
+  var numOfDays:Int?
+  weak var delegate:JsonParserDelegate?
   
   
   init(url:String) {
@@ -50,12 +56,12 @@ class JsonParser:NSObject, JsonDownloaderDelegate {
   
   func jsonDataDidDownload(jsonData: NSDictionary) {
     
-    //let numOfDays = jsonData["cnt"] as! Int
+    numOfDays = jsonData["cnt"] as? Int
     let dailyForecast = jsonData["list"] as? [AnyObject]
     
     for day in dailyForecast! {
       
-     
+      
       let pressure = day["pressure"] as? Double
       //print(day)
       let iconCode = (day["weather"] as? [AnyObject])![0]["icon"] as? String
@@ -67,9 +73,11 @@ class JsonParser:NSObject, JsonDownloaderDelegate {
       
       }
     //print(weatherData)
+    delegate?.dataDidParse(weatherData!)
   }
   
+  
   func makeUrlFromIconCode(iconCode:String) -> String {
-    return "http://openweathermap.org/img/w/\(iconCode).png"
+    return "https://openweathermap.org/img/w/\(iconCode).png"
   }
 }

@@ -12,13 +12,13 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
-  var jsnsns: JsonExtractor!
+  var jsnsns: JsonParser!
   
   let url = "http://api.openweathermap.org/data/2.5/forecast/daily?id=3088171&mode=json&units=metric&cnt=7&appid=ad4e521f54b155390c178acc59582f10"
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    jsnsns = JsonExtractor(url: self.url)
+    jsnsns = JsonParser(url: self.url)
   }
 
   override func didReceiveMemoryWarning() {

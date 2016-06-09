@@ -11,10 +11,15 @@
 import UIKit
 
 class WeatherCell: UICollectionViewCell {
-  @IBOutlet weak var temperaureLabel: UILabel!
+  @IBOutlet private weak var temperaureLabel: UILabel!
   @IBOutlet weak var pressureLabel: UILabel!
   @IBOutlet weak var weatherIcon: UIImage!
+  weak var colletionViewReference:UICollectionView?
+  private var myContext = 0
   
+  func setTemperature(temp:Int){
+    temperaureLabel.text = "\(temp) °C"
+  }
 }
 
 class FirstViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, JsonParserDelegate {
@@ -46,16 +51,21 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     if parsedData != nil {
       return (parsedData?.weatherData?.count)!
     }
-    return 1
+    return 2
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! WeatherCell
+    //print(parsedData)
     
-    if parsedData != nil {
-      
-      cell.temperaureLabel.text = "\(parsedData!.weatherData![indexPath.row].temperature.day)"
+    cell.colletionViewReference = collectionView
+    
+    if parsedData == nil {
+    
+      cell.temperaureLabel.text = "temp"
+    } else {
+      cell.setTemperature(Int(parsedData!.weatherData![indexPath.row].temperature.day))
     }
     //cell.temperaureLabel.text = "temp"
     cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
@@ -65,7 +75,6 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
 
   func dataDidParse(weatherData:Array<ForecastDetails>) {
     self.collectionView.reloadData()
-    print(weatherData)
   }
   
 }

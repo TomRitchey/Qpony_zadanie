@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6P8-64-NTQ">
-                                <rect key="frame" x="20" y="40" width="560" height="511"/>
+                                <rect key="frame" x="10" y="40" width="580" height="511"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vc2-9r-Lya">
                                     <size key="itemSize" width="175" height="120"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -126,11 +126,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eQB-43-xnH" firstAttribute="centerX" secondItem="6P8-64-NTQ" secondAttribute="centerX" id="21q-K3-Hhl"/>
-                            <constraint firstItem="6P8-64-NTQ" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="TLT-79-6Ok"/>
+                            <constraint firstItem="6P8-64-NTQ" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" constant="10" id="TLT-79-6Ok"/>
                             <constraint firstItem="eQB-43-xnH" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="ZAt-uh-ewY"/>
                             <constraint firstItem="6P8-64-NTQ" firstAttribute="top" secondItem="eQB-43-xnH" secondAttribute="bottom" constant="-1" id="dFC-RG-fXv"/>
                             <constraint firstItem="6P8-64-NTQ" firstAttribute="bottom" secondItem="4ug-Mw-9AY" secondAttribute="top" id="ghz-Oc-g8W"/>
-                            <constraint firstItem="6P8-64-NTQ" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="kPL-ud-XxA"/>
+                            <constraint firstItem="6P8-64-NTQ" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-10" id="kPL-ud-XxA"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Zadanie Pierwsze" image="first" id="acW-dT-cKf"/>

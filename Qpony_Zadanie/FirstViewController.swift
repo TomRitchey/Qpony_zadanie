@@ -10,20 +10,44 @@
 
 import UIKit
 
-class WeatherCell: UICollectionViewCell {
+class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
+  //MARK: properties
   @IBOutlet private weak var temperaureLabel: UILabel!
   @IBOutlet weak var pressureLabel: UILabel!
-  @IBOutlet weak var weatherIcon: UIImage!
+  @IBOutlet weak var weatherIcon: UIImageView!
   weak var colletionViewReference:UICollectionView?
+  var weatherImageDodownloader:ImageDownloader!
   private var myContext = 0
+  
+  //MARK: methods
+  override init(frame: CGRect) { //for programmatically created cells
+    super.init(frame: frame)
+    weatherImageDodownloader = ImageDownloader()
+    weatherImageDodownloader.delegate = self
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    
+    weatherImageDodownloader = ImageDownloader()
+    weatherImageDodownloader.delegate = self
+  }
   
   func setTemperature(temp:Int){
     temperaureLabel.text = "\(temp) °C"
   }
+  
+  func setWeatherImageUrl(url:String){
+    weatherImageDodownloader.downloadImageWithUrl(url)
+  }
+  
+  func imageDownloaderDidFinishDownloading(image:UIImage) {
+    weatherIcon.image = image
+  }
 }
 
 class FirstViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, JsonParserDelegate {
-
+//MARK: properties
   var parsedData: JsonParser?
   
   @IBOutlet weak var collectionView: UICollectionView!
@@ -31,8 +55,10 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
   let reuseIdentifier = "cell"
   let url = "http://api.openweathermap.org/data/2.5/forecast/daily?id=3088171&mode=json&units=metric&cnt=7&appid=ad4e521f54b155390c178acc59582f10"
   
+  //MARK: methods
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     parsedData = JsonParser(url: self.url)
     parsedData?.delegate = self
   }
@@ -66,10 +92,9 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
       cell.temperaureLabel.text = "temp"
     } else {
       cell.setTemperature(Int(parsedData!.weatherData![indexPath.row].temperature.day))
+      cell.setWeatherImageUrl(parsedData!.weatherData![indexPath.row].iconUrl)
     }
-    //cell.temperaureLabel.text = "temp"
-    cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
-    
+    cell.backgroundColor = UIColor.grayColor()
     return cell
   }
 

@@ -46,11 +46,15 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4s5-FR-Mr2">
+                                                    <rect key="frame" x="110" y="52" width="73" height="48"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
                                             <outlet property="temperaureLabel" destination="mva-rq-jyE" id="Xco-PI-vff"/>
+                                            <outlet property="weatherIcon" destination="4s5-FR-Mr2" id="P5T-nd-EdK"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

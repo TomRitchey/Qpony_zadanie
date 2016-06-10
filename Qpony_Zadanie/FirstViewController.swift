@@ -12,6 +12,7 @@ import UIKit
 
 class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
   //MARK: properties
+  @IBOutlet weak var dayLabel: UILabel!
   @IBOutlet private weak var temperaureLabel: UILabel!
   @IBOutlet private weak var pressureLabel: UILabel!
   @IBOutlet weak var weatherIcon: UIImageView!
@@ -29,16 +30,22 @@ class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
+    //print(DayOfTheWeek.returnDayName(2))
+    
     weatherImageDodownloader = ImageDownloader()
     weatherImageDodownloader.delegate = self
   }
   
+  func setDayOfTheWeek(numOfDaysFromToday:Int) {
+    dayLabel.text = DayOfTheWeek.returnDayName(numOfDaysFromToday)
+  }
+  
   func setTemperature(temp:Int){
-    temperaureLabel.text = "\(temp) °C"
+    temperaureLabel.text = "\(temp)°C"
   }
   
   func setPressure(press:Int){
-    pressureLabel.text = "\(press) hPa"
+    pressureLabel.text = "\(press)hPa"
   }
   
   func setWeatherImageUrl(url:String){
@@ -99,6 +106,7 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     
       cell.temperaureLabel.text = "temp"
     } else {
+      cell.setDayOfTheWeek(indexPath.row)
       cell.setTemperature(Int(parsedData!.weatherData![indexPath.row].temperature.day))
       cell.setPressure(Int(parsedData!.weatherData![indexPath.row].pressure))
       cell.setWeatherImageUrl(parsedData!.weatherData![indexPath.row].iconUrl)

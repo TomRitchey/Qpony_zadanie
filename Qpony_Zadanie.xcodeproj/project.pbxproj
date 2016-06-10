@@ -18,6 +18,7 @@
 		A7A45E361D0412360045C2EC /* ButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A45E351D0412360045C2EC /* ButtonWithState.swift */; };
 		A7A45E381D0496230045C2EC /* ButtonStateS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A45E371D0496230045C2EC /* ButtonStateS.swift */; };
 		A7F850871D0A008100167FD1 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F850861D0A008100167FD1 /* ImageDownloader.swift */; };
+		A7F850891D0AE01000167FD1 /* DayOfTheWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F850881D0AE01000167FD1 /* DayOfTheWeek.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		A7A45E351D0412360045C2EC /* ButtonWithState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonWithState.swift; sourceTree = "<group>"; };
 		A7A45E371D0496230045C2EC /* ButtonStateS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStateS.swift; sourceTree = "<group>"; };
 		A7F850861D0A008100167FD1 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		A7F850881D0AE01000167FD1 /* DayOfTheWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfTheWeek.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				A7A45E231D040D160045C2EC /* FirstViewController.swift */,
+				A7F850881D0AE01000167FD1 /* DayOfTheWeek.swift */,
 				A7F850861D0A008100167FD1 /* ImageDownloader.swift */,
 				A76CC6671D072BC2002719E4 /* JSONDataParser.swift */,
 				A76CC6651D05A3C5002719E4 /* JSONgetter.swift */,
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F850891D0AE01000167FD1 /* DayOfTheWeek.swift in Sources */,
 				A7A45E261D040D160045C2EC /* SecondViewController.swift in Sources */,
 				A7A45E381D0496230045C2EC /* ButtonStateS.swift in Sources */,
 				A7F850871D0A008100167FD1 /* ImageDownloader.swift in Sources */,

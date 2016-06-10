@@ -17,11 +17,11 @@ class DayOfTheWeek {
     dateFormatter.dateFormat = "yyyy-MM-dd"
     let todayDate = NSDate()
     
-    if dayOffset == 0 {
-      return NSLocalizedString("Today", comment: "Today")
-    }
+//    if dayOffset == 0 {
+//      return NSLocalizedString("Today", comment: "Today")
+//    }
     
-    if dayOffset == 1 {
+    if dayOffset == 0 {
       return NSLocalizedString("Tomorrow", comment: "Tomorrow")
     }
     

@@ -107,7 +107,7 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
       cell.setPressure(Int(parsedData!.weatherData![indexPath.row].pressure))
       cell.setWeatherImageUrl(parsedData!.weatherData![indexPath.row].iconUrl)
     }
-    cell.backgroundColor = UIColor.grayColor()
+    cell.backgroundColor = UIColor.lightGrayColor()
     return cell
   }
 

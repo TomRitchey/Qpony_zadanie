@@ -18,6 +18,8 @@ class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
   @IBOutlet weak var weatherIcon: UIImageView!
   weak var colletionViewReference:UICollectionView?
   var weatherImageDodownloader:ImageDownloader!
+  var weatherImage:UIImage?
+  var imageUrl:String?
   private var myContext = 0
   
   //MARK: methods
@@ -49,11 +51,17 @@ class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
   }
   
   func setWeatherImageUrl(url:String){
-    weatherImageDodownloader.downloadImageWithUrl(url)
+    print(weatherImage)
+    if weatherImage == nil && imageUrl != url{
+      print("Sciągam")
+      weatherImageDodownloader.downloadImageWithUrl(url)
+    }
+    imageUrl = url
   }
   
   func imageDownloaderDidFinishDownloading(image:UIImage) {
-    weatherIcon.image = image
+    weatherImage = image
+    weatherIcon.image = weatherImage
     weatherIcon.contentMode = UIViewContentMode.ScaleAspectFit
     
   }

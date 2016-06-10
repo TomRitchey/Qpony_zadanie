@@ -76,11 +76,7 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     parsedData = JsonParser(url: self.url)
     parsedData?.delegate = self
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+    collectionView.backgroundColor = UIColor.whiteColor()
   }
 
   //MARK: Collection view methods
@@ -92,7 +88,7 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     if parsedData != nil {
       return (parsedData?.weatherData?.count)!
     }
-    return 2
+    return 1
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

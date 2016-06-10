@@ -108,6 +108,8 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
       cell.setWeatherImageUrl(parsedData!.weatherData![indexPath.row].iconUrl)
     }
     cell.backgroundColor = UIColor.lightGrayColor()
+    cell.layer.masksToBounds = true
+    cell.layer.cornerRadius = 5
     return cell
   }
 

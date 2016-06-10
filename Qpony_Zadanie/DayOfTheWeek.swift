@@ -28,7 +28,7 @@ class DayOfTheWeek {
     let components = calendar.components(.Weekday, fromDate: todayDate)
     var weekDay = components.weekday
     
-    weekDay = ((weekDay + dayOffset - 1)%7)+1
+    weekDay = ((weekDay + dayOffset)%7)+1
     
     switch weekDay {
       case 1:

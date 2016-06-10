@@ -57,6 +57,9 @@ class JsonParser:NSObject, JsonDownloaderDelegate {
   func jsonDataDidDownload(jsonData: NSDictionary) {
     
     numOfDays = jsonData["cnt"] as? Int
+    city = (jsonData["city"] as? [String:AnyObject])!["name"] as? String
+    print(city)
+    
     let dailyForecast = jsonData["list"] as? [AnyObject]
     
     for day in dailyForecast! {
@@ -65,7 +68,7 @@ class JsonParser:NSObject, JsonDownloaderDelegate {
       let pressure = day["pressure"] as? Double
       //print(day)
       let iconCode = (day["weather"] as? [AnyObject])![0]["icon"] as? String
-
+      
       let temperature = Temperatures(day: ((day["temp"] as? [String:AnyObject])!["day"] as? Double)!)
       
       let forecastForOneDay = ForecastDetails(temperature: temperature, pressure:pressure!, iconUrl: makeUrlFromIconCode(iconCode!))

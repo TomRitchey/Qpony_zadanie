@@ -13,7 +13,7 @@ import UIKit
 class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
   //MARK: properties
   @IBOutlet private weak var temperaureLabel: UILabel!
-  @IBOutlet weak var pressureLabel: UILabel!
+  @IBOutlet private weak var pressureLabel: UILabel!
   @IBOutlet weak var weatherIcon: UIImageView!
   weak var colletionViewReference:UICollectionView?
   var weatherImageDodownloader:ImageDownloader!
@@ -37,12 +37,18 @@ class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
     temperaureLabel.text = "\(temp) °C"
   }
   
+  func setPressure(press:Int){
+    pressureLabel.text = "\(press) hPa"
+  }
+  
   func setWeatherImageUrl(url:String){
     weatherImageDodownloader.downloadImageWithUrl(url)
   }
   
   func imageDownloaderDidFinishDownloading(image:UIImage) {
     weatherIcon.image = image
+    weatherIcon.contentMode = UIViewContentMode.ScaleAspectFit
+    
   }
 }
 
@@ -51,6 +57,8 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
   var parsedData: JsonParser?
   
   @IBOutlet weak var collectionView: UICollectionView!
+  
+  @IBOutlet weak var cityLabel: UILabel!
   
   let reuseIdentifier = "cell"
   let url = "http://api.openweathermap.org/data/2.5/forecast/daily?id=3088171&mode=json&units=metric&cnt=7&appid=ad4e521f54b155390c178acc59582f10"
@@ -92,6 +100,7 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
       cell.temperaureLabel.text = "temp"
     } else {
       cell.setTemperature(Int(parsedData!.weatherData![indexPath.row].temperature.day))
+      cell.setPressure(Int(parsedData!.weatherData![indexPath.row].pressure))
       cell.setWeatherImageUrl(parsedData!.weatherData![indexPath.row].iconUrl)
     }
     cell.backgroundColor = UIColor.grayColor()
@@ -100,6 +109,7 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
 
   func dataDidParse(weatherData:Array<ForecastDetails>) {
     self.collectionView.reloadData()
+    cityLabel.text = parsedData?.city
   }
   
 }

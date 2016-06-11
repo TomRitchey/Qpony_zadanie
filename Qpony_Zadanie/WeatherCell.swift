@@ -9,9 +9,7 @@
 import Foundation
 import UIKit
 
-class WeatherCell: UICollectionViewCell//, ImageDownloaderDelegate {
-  //MARK: properties
-{
+class WeatherCell: UICollectionViewCell {
   @IBOutlet weak var dayLabel: UILabel!
   @IBOutlet private weak var temperaureLabel: UILabel!
   @IBOutlet private weak var pressureLabel: UILabel!
@@ -25,17 +23,10 @@ class WeatherCell: UICollectionViewCell//, ImageDownloaderDelegate {
   //MARK: methods
   override init(frame: CGRect) { //for programmatically created cells
     super.init(frame: frame)
-    //weatherImageDodownloader = ImageDownloader()
-    //weatherImageDodownloader.delegate = self
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    
-    //print(DayOfTheWeek.returnDayName(2))
-    
-    //weatherImageDodownloader = ImageDownloader()
-    //weatherImageDodownloader.delegate = self
   }
   
   func setDayOfTheWeek(numOfDaysFromToday:Int) {
@@ -57,20 +48,5 @@ class WeatherCell: UICollectionViewCell//, ImageDownloaderDelegate {
     }
     weatherIcon.image = img
   }
-  
-  //  func setWeatherImageUrl(url:String){
-  //    print(weatherImage)
-  //    if weatherImage == nil ||  imageUrl != url{
-  //      print("Sciągam")
-  //      weatherImageDodownloader.downloadImageWithUrl(url)
-  //    }
-  //    imageUrl = url
-  //  }
-  //
-  //  func imageDownloaderDidFinishDownloading(image:UIImage) {
-  //    weatherImage = image
-  //    weatherIcon.image = weatherImage
-  //    weatherIcon.contentMode = UIViewContentMode.ScaleAspectFit
-  //    
-  //  }
+
 }

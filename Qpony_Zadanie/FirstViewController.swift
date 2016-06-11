@@ -51,19 +51,17 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! WeatherCell
-    //print(parsedData)
     
     cell.colletionViewReference = collectionView
     
     if parsedData == nil {
     
-      //cell.temperaureLabel.text = "temp"
+      cell.setTemperature(-1)
     } else {
       cell.setDayOfTheWeek(indexPath.row)
       cell.setTemperature(Int(parsedData!.weatherData![indexPath.row].temperature.day))
       cell.setPressure(Int(parsedData!.weatherData![indexPath.row].pressure))
       cell.setImage(weatherImage![indexPath.row])
-      //cell.setWeatherImageUrl(parsedData!.weatherData![indexPath.row].iconUrl)
     }
     
     cell.backgroundColor = UIColor.lightGrayColor()

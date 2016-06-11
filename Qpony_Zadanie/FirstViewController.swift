@@ -52,7 +52,7 @@ class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
   
   func setWeatherImageUrl(url:String){
     print(weatherImage)
-    if weatherImage == nil && imageUrl != url{
+    if weatherImage == nil ||  imageUrl != url{
       print("Sciągam")
       weatherImageDodownloader.downloadImageWithUrl(url)
     }

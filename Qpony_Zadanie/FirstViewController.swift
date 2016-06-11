@@ -49,24 +49,34 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-
+    
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! WeatherCell
     
     cell.colletionViewReference = collectionView
     
-    if parsedData == nil {
-    
-      cell.setTemperature(-1)
-    } else {
-      cell.setDayOfTheWeek(indexPath.row)
-      cell.setTemperature(Int(parsedData!.weatherData![indexPath.row].temperature.day))
-      cell.setPressure(Int(parsedData!.weatherData![indexPath.row].pressure))
-      cell.setImage(weatherImage![indexPath.row])
-    }
-    
     cell.backgroundColor = UIColor.lightGrayColor()
     cell.layer.masksToBounds = true
     cell.layer.cornerRadius = 5
+    cell.setImage(weatherImage?[indexPath.row])
+//    if parsedData == nil {
+//      
+//      cell.setTemperature(-1)
+//    } else {
+//      cell.setDayOfTheWeek(indexPath.row)
+//      cell.setTemperature(Int(parsedData!.weatherData![indexPath.row].temperature.day))
+//      cell.setPressure(Int(parsedData!.weatherData![indexPath.row].pressure))
+//      cell.setImage(weatherImage![indexPath.row])
+//    }
+    
+    guard let data = parsedData else {
+      cell.setTemperature(-1)
+      return cell
+    }
+    
+    cell.setDayOfTheWeek(indexPath.row)
+    cell.setTemperature(Int(data.weatherData![indexPath.row].temperature.day))
+    cell.setPressure(Int(data.weatherData![indexPath.row].pressure))
+    
     return cell
   }
 

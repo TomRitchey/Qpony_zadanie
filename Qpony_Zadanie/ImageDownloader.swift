@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ImageDownloaderDelegate:class {
-  func imageDownloaderDidFinishDownloading(image:UIImage)
+  func imageDownloaderDidFinishDownloading(image:UIImage, imageIndex:Int)
 }
 
 class ImageDownloader:NSObject {
@@ -28,7 +28,7 @@ class ImageDownloader:NSObject {
   
   //MARK: methods
   
-  func downloadImageWithUrl(url:String) {
+  func downloadImageWithUrl(url:String, forIndex index:Int) {
     ImageDownloader.downloadQueue.addOperationWithBlock { () -> Void in
       
       let url = NSURL(string: url)
@@ -39,7 +39,7 @@ class ImageDownloader:NSObject {
       
       NSOperationQueue.mainQueue().addOperationWithBlock({
         
-        self.delegate?.imageDownloaderDidFinishDownloading(img!)
+        self.delegate?.imageDownloaderDidFinishDownloading(img!, imageIndex: index)
       })
     }
   }

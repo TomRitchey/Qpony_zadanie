@@ -10,64 +10,7 @@
 
 import UIKit
 
-class WeatherCell: UICollectionViewCell, ImageDownloaderDelegate {
-  //MARK: properties
-  @IBOutlet weak var dayLabel: UILabel!
-  @IBOutlet private weak var temperaureLabel: UILabel!
-  @IBOutlet private weak var pressureLabel: UILabel!
-  @IBOutlet weak var weatherIcon: UIImageView!
-  weak var colletionViewReference:UICollectionView?
-  var weatherImageDodownloader:ImageDownloader!
-  var weatherImage:UIImage?
-  var imageUrl:String?
-  private var myContext = 0
-  
-  //MARK: methods
-  override init(frame: CGRect) { //for programmatically created cells
-    super.init(frame: frame)
-    weatherImageDodownloader = ImageDownloader()
-    weatherImageDodownloader.delegate = self
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    
-    //print(DayOfTheWeek.returnDayName(2))
-    
-    weatherImageDodownloader = ImageDownloader()
-    weatherImageDodownloader.delegate = self
-  }
-  
-  func setDayOfTheWeek(numOfDaysFromToday:Int) {
-    dayLabel.text = DayOfTheWeek.returnDayName(numOfDaysFromToday)
-  }
-  
-  func setTemperature(temp:Int){
-    temperaureLabel.text = "\(temp)°C"
-  }
-  
-  func setPressure(press:Int){
-    pressureLabel.text = "\(press)hPa"
-  }
-  
-  func setWeatherImageUrl(url:String){
-    print(weatherImage)
-    if weatherImage == nil ||  imageUrl != url{
-      print("Sciągam")
-      weatherImageDodownloader.downloadImageWithUrl(url)
-    }
-    imageUrl = url
-  }
-  
-  func imageDownloaderDidFinishDownloading(image:UIImage) {
-    weatherImage = image
-    weatherIcon.image = weatherImage
-    weatherIcon.contentMode = UIViewContentMode.ScaleAspectFit
-    
-  }
-}
-
-class FirstViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, JsonParserDelegate {
+class FirstViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, JsonParserDelegate, UIDocumentInteractionControllerDelegate, ImageDownloaderDelegate {
 //MARK: properties
   var parsedData: JsonParser?
   
@@ -75,12 +18,18 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
   
   @IBOutlet weak var cityLabel: UILabel!
   
+  var weatherImage:Array<UIImage?>?
+  var weatherImageDodownloader:ImageDownloader!
+  
   let reuseIdentifier = "cell"
   let url = "http://api.openweathermap.org/data/2.5/forecast/daily?id=3088171&mode=json&units=metric&cnt=7&appid=ad4e521f54b155390c178acc59582f10"
   
   //MARK: methods
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    weatherImageDodownloader = ImageDownloader()
+    weatherImageDodownloader.delegate = self
     
     parsedData = JsonParser(url: self.url)
     parsedData?.delegate = self
@@ -108,13 +57,15 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     if parsedData == nil {
     
-      cell.temperaureLabel.text = "temp"
+      //cell.temperaureLabel.text = "temp"
     } else {
       cell.setDayOfTheWeek(indexPath.row)
       cell.setTemperature(Int(parsedData!.weatherData![indexPath.row].temperature.day))
       cell.setPressure(Int(parsedData!.weatherData![indexPath.row].pressure))
-      cell.setWeatherImageUrl(parsedData!.weatherData![indexPath.row].iconUrl)
+      cell.setImage(weatherImage![indexPath.row])
+      //cell.setWeatherImageUrl(parsedData!.weatherData![indexPath.row].iconUrl)
     }
+    
     cell.backgroundColor = UIColor.lightGrayColor()
     cell.layer.masksToBounds = true
     cell.layer.cornerRadius = 5
@@ -122,9 +73,19 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
   }
 
   func dataDidParse(weatherData:Array<ForecastDetails>) {
-    self.collectionView.reloadData()
+    weatherImage = Array(count: (parsedData?.numOfDays)!,repeatedValue: nil)
+    
+    for index in 0..<weatherImage!.count {
+      weatherImageDodownloader.downloadImageWithUrl((parsedData!.weatherData![index].iconUrl), forIndex:index)
+    }
+    
+      self.collectionView.reloadData()
     cityLabel.text = parsedData?.city
   }
   
+  func imageDownloaderDidFinishDownloading(image:UIImage, imageIndex:Int) {
+    weatherImage!.insert(image, atIndex: imageIndex)
+    collectionView.reloadData()
+  }
 }
 

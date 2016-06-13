@@ -38,7 +38,7 @@ class WeatherCell: UICollectionViewCell {
   }
   
   func setPressure(press:Int){
-    pressureLabel.text = "\(press)hPa"
+    pressureLabel.text = "\(press) hPa"
   }
   
   func setImage(image:UIImage?){

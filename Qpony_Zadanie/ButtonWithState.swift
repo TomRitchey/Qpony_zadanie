@@ -82,7 +82,7 @@ class ButtonWithState: UIButton {
 }
 
 
-//MARK:examle buttons with example states
+//MARK:example buttons with example states
 class ButtonWithStateOne: ButtonWithState {
   
   override func initialStates(){

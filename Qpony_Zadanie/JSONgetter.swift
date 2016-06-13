@@ -36,7 +36,7 @@ class JsonDownloader: NSObject, NSURLConnectionDelegate {
   func connectionDidFinishLoading(connection: NSURLConnection!) {
     do {
     jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-     }catch{
+    }catch{
       print("json error")
     }
     delegate?.jsonDataDidDownload(jsonData)

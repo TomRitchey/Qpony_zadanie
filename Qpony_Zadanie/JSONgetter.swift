@@ -67,7 +67,9 @@ class JsonDownloaderUsingNSURLSession: JsonDownloader {
         }catch{
           print("json error")
         }
-        self.delegate?.jsonDataDidDownload(self.jsonData)
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+          self.delegate?.jsonDataDidDownload(self.jsonData)
+        })
       }
     }
     sessionDataTask.resume()

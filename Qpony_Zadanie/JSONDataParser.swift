@@ -48,7 +48,7 @@ class JsonParser:NSObject, JsonDownloaderDelegate {
     self.url = url
     
     weatherData = []
-    jsonDwnld = JsonDownloader()
+    jsonDwnld = JsonDownloaderUsingNSURLSession()
     jsonDwnld.delegate = self
     jsonDwnld.downloadJsonForUrl(self.url)
   }

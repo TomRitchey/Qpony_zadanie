@@ -51,3 +51,25 @@ class JsonDownloader: NSObject, NSURLConnectionDelegate {
   }
 
 }
+
+class JsonDownloaderUsingNSURLSession: JsonDownloader {
+  override func downloadJsonForUrl(url:String){
+    let url: NSURL = NSURL(string: url)!
+    let request: NSURLRequest = NSURLRequest(URL: url)
+    let session = NSURLSession.sharedSession()
+    let sessionDataTask = session.dataTaskWithRequest(request){
+      (data, response, error) -> Void in
+      if error != nil {
+        print("Error downloading file : \(error)")
+      } else {
+        do {
+          self.jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+        }catch{
+          print("json error")
+        }
+        self.delegate?.jsonDataDidDownload(self.jsonData)
+      }
+    }
+    sessionDataTask.resume()
+  }
+}
